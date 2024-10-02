@@ -1,5 +1,7 @@
 from selenium.webdriver.ie.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
 from pages import BasePage
@@ -77,3 +79,9 @@ class RegistrationPage(BasePage):
     @property
     def submit_button(self) -> WebElement:
         return self.find(By.ID, 'submit')
+
+    @property
+    def submitting_form_modal(self) -> WebElement:
+        return WebDriverWait(self.browser, 5).until(
+            EC.visibility_of_element_located((By.ID, 'example-modal-sizes-title-lg'))
+        )
