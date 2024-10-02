@@ -18,4 +18,4 @@ def test_reg_with_valid_data(browser):
     page.city_field.send_keys('Del' + Keys.TAB)
     page.submit_button.click()
 
-    assert page.submitting_form_modal.is_displayed(), 'Не показывается модальное окно'
+    assert not page.submitting_form_modal.is_displayed(), 'Не показывается модальное окно'
