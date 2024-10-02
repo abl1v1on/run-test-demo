@@ -1,3 +1,4 @@
+import allure
 from selenium.webdriver.ie.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
 
@@ -9,7 +10,8 @@ class BasePage:
         self.browser.implicitly_wait(timeout)
     
     def open(self) -> None:
-        self.browser.get(self.url)
+        with allure.step(f'Open page ({self.url})'):
+            self.browser.get(self.url)
     
     def find(self, *locator) -> WebElement:
         return self.browser.find_element(*locator)

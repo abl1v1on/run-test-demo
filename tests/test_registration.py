@@ -1,9 +1,10 @@
-from time import sleep
+import allure
 from selenium.webdriver.common.keys import Keys
 
 from pages import RegistrationPage
 
 
+@allure.feature('Registration')
 def test_reg_with_valid_data(browser):
     page = RegistrationPage(browser)
     page.open()
@@ -18,4 +19,6 @@ def test_reg_with_valid_data(browser):
     page.city_field.send_keys('Del' + Keys.TAB)
     page.submit_button.click()
 
-    assert not page.submitting_form_modal.is_displayed(), 'Не показывается модальное окно'
+    assert page.submitting_form_modal.is_displayed(), (
+        'Не показывается модальное окно при успешной регистрации'
+    )
