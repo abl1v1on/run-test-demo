@@ -3,6 +3,11 @@ name: DemoQA Tests
 on:
   push
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   test: 
     name: Run test-cases
